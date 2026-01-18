@@ -38,6 +38,24 @@ reset_handler:
     .align 1
     .type systick_handler, %function
 systick_handler:
-    add r5, r5, #0x1
-break_here:
+    push {r4-r7}
+
+    mov r0, r8
+    mov r1, r9
+    mov r2, r10
+    mov r3, r11
+
+    push {r0-r3}
+
+magic:
+
+    pop {r0-r3}
+
+    mov r8, r0
+    mov r9, r1
+    mov r10, r2
+    mov r11, r3
+
+    pop {r4-r7}
+
     bx lr
